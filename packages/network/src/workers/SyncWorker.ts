@@ -202,7 +202,7 @@ export class SyncWorker<C extends Components> implements DoWork<Input, NetworkEv
         snapshotBlockNumber > 0 ? snapshotBlockNumber : "Unavailable"
       }, start sync at ${initialBlockNumber}`
     );
-
+    console.log(5);
     let initialState = createCacheStore();
     if (initialBlockNumber > Math.max(cacheBlockNumber, snapshotBlockNumber)) {
       initialState.blockNumber = initialBlockNumber;
@@ -228,7 +228,7 @@ export class SyncWorker<C extends Components> implements DoWork<Input, NetworkEv
 
       console.log(`[SyncWorker] got ${initialState.state.size} items from ${syncFromSnapshot ? "snapshot" : "cache"}`);
     }
-
+    console.log(4);
     // Load events from gap between initial state and current block number from RPC
     const streamStartBlockNumber = await streamStartBlockNumberPromise;
     this.setLoadingState({
@@ -248,7 +248,7 @@ export class SyncWorker<C extends Components> implements DoWork<Input, NetworkEv
     console.log(
       `[SyncWorker || via JSON-RPC] got ${gapStateEvents.length} items from block range ${initialState.blockNumber} -> ${streamStartBlockNumber}`
     );
-
+    console.log(3);
     // Merge initial state, gap state and live events since initial sync started
     storeEvents(initialState, [...gapStateEvents, ...initialLiveEvents]);
     cacheStore.current = initialState;
@@ -259,7 +259,7 @@ export class SyncWorker<C extends Components> implements DoWork<Input, NetworkEv
       msg: `Initializing with ${cacheStore.current.state.size} state entries`,
       percentage: 0,
     });
-
+    console.log(2);
     // Pass current cacheStore to output and start passing live events
     let i = 0;
     for (const update of getCacheStoreEntries(cacheStore.current)) {
@@ -273,7 +273,7 @@ export class SyncWorker<C extends Components> implements DoWork<Input, NetworkEv
 
     // Save initial state to cache
     saveCacheStoreToIndexDb(indexDbCache, cacheStore.current);
-
+    console.log(1);
     // Let the client know loading is complete
     this.setLoadingState(
       { state: SyncState.LIVE, msg: `Streaming live events`, percentage: 100 },
