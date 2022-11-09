@@ -47,7 +47,7 @@ contract World is IWorld {
     string memory systemsComponentIdString = "world.systems.components";
     string memory componentsComponentIdString = "world.component.components";
 
-    address systemsComponentAddr = getAddressById(_components, systemsComponentId);
+    address systemsComponentAddr = address(_systems);
     address componentsComponentAddr = address(_components);
 
     registerSystemReadComponentIds[0] = systemsComponentIdString;
