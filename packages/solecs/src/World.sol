@@ -37,7 +37,41 @@ contract World is IWorld {
   constructor() {
     _components = new Uint256Component(address(0), componentsComponentId);
     _systems = new Uint256Component(address(0), systemsComponentId);
-    register = new RegisterSystem(this, address(_components));
+
+    string[] memory registerSystemReadComponentIds = new string[](2);
+    address[] memory registerSystemReadComponentAddrs = new address[](2);
+
+    string[] memory registerSystemWriteComponentIds = new string[](2);
+    address[] memory registerSystemWriteComponentAddrs = new address[](2);
+
+    string memory systemsComponentIdString = "world.systems.components";
+    string memory componentsComponentIdString = "world.component.components";
+
+    address systemsComponentAddr = getAddressById(_components, systemsComponentId);
+    address componentsComponentAddr = address(_components);
+
+    registerSystemReadComponentIds[0] = systemsComponentIdString;
+    registerSystemReadComponentIds[1] = componentsComponentIdString;
+    registerSystemReadComponentAddrs[0] = systemsComponentAddr;
+    registerSystemReadComponentAddrs[1] = componentsComponentAddr;
+
+    registerSystemWriteComponentIds[0] = systemsComponentIdString;
+    registerSystemWriteComponentIds[1] = componentsComponentIdString;
+    registerSystemWriteComponentAddrs[0] = systemsComponentAddr;
+    registerSystemWriteComponentAddrs[1] = componentsComponentAddr;
+
+    string memory registerSystemIdString = "world.systems.register";
+
+    register = new RegisterSystem(
+      this,
+      address(_components),
+      registerSystemReadComponentIds,
+      registerSystemReadComponentAddrs,
+      registerSystemWriteComponentIds,
+      registerSystemWriteComponentAddrs,
+      registerSystemIdString
+    );
+
     _systems.authorizeWriter(address(register));
     _components.authorizeWriter(address(register));
   }

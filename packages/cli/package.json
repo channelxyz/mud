@@ -4,9 +4,6 @@
   "description": "Command line interface for mud",
   "main": "dist/index.js",
   "license": "MIT",
-  "bin": {
-    "mud": "./dist/index.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/latticexyz/mud.git",
