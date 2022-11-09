@@ -35,8 +35,8 @@ contract World is IWorld {
   event ComponentValueRemoved(uint256 indexed componentId, address indexed component, uint256 indexed entity);
 
   constructor() {
-    _components = new Uint256Component(address(0), componentsComponentId);
-    _systems = new Uint256Component(address(0), systemsComponentId);
+    _components = new Uint256Component(address(0), componentsComponentId, "world.component.components");
+    _systems = new Uint256Component(address(0), systemsComponentId, "world.component.systems");
 
     string[] memory registerSystemReadComponentIds = new string[](2);
     address[] memory registerSystemReadComponentAddrs = new address[](2);
