@@ -9,7 +9,11 @@ struct VoxelCoord {
 }
 
 contract VoxelCoordComponent is BareComponent {
-  constructor(address world, uint256 id) BareComponent(world, id) {}
+  constructor(
+    address world,
+    uint256 id,
+    string memory idString
+  ) BareComponent(world, id, idString) {}
 
   function getSchema() public pure override returns (string[] memory keys, LibTypes.SchemaValue[] memory values) {
     keys = new string[](3);
