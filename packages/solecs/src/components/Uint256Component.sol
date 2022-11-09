@@ -7,7 +7,11 @@ import "../interfaces/IUint256Component.sol";
  * Reference implementation of a component storing a uint256 value for each entity.
  */
 contract Uint256Component is Component, IUint256Component {
-  constructor(address world, uint256 id) Component(world, id) {}
+  constructor(
+    address world,
+    uint256 id,
+    string memory idString
+  ) Component(world, id, idString) {}
 
   function getSchema() public pure override returns (string[] memory keys, LibTypes.SchemaValue[] memory values) {
     keys = new string[](1);

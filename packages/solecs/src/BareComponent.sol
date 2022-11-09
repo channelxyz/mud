@@ -32,11 +32,17 @@ abstract contract BareComponent is IComponent {
 
   /** Public identifier of this component */
   uint256 public id;
+  string public idString;
 
-  constructor(address _world, uint256 _id) {
+  constructor(
+    address _world,
+    uint256 _id,
+    string memory _idString
+  ) {
     _owner = msg.sender;
     writeAccess[msg.sender] = true;
     id = _id;
+    idString = _idString;
     if (_world != address(0)) registerWorld(_world);
   }
 
