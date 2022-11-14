@@ -106,6 +106,13 @@ contract World is IWorld {
   }
 
   /**
+  Get the BoolComponent that stores signers.
+   */
+  function signers() public view returns (BoolComponent) {
+    return _signers;
+  }
+
+  /**
    * Register a new component in this World.
    * ID must be unique.
    */
@@ -119,6 +126,13 @@ contract World is IWorld {
    */
   function registerSystem(address systemAddr, uint256 id) public {
     register.execute(abi.encode(msg.sender, RegisterType.System, systemAddr, id));
+  }
+
+  /**
+  Register a new signer in this world.
+   */
+  function registerSigner(address signerAddr) public {
+    _signers.set(addressToEntity(signerAddr));
   }
 
   /**
