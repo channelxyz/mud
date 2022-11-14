@@ -6,8 +6,9 @@ import { IWorld, WorldQueryFragment } from "./interfaces/IWorld.sol";
 import { QueryFragment } from "./interfaces/Query.sol";
 import { IUint256Component } from "./interfaces/IUint256Component.sol";
 import { Uint256Component } from "./components/Uint256Component.sol";
+import { BoolComponent } from "../../std-contracts/src/components/BoolComponent.sol";
 import { addressToEntity, entityToAddress, getIdByAddress, getAddressById, getComponentById } from "./utils.sol";
-import { componentsComponentId, systemsComponentId } from "./constants.sol";
+import { componentsComponentId, systemsComponentId, signersComponentId } from "./constants.sol";
 import { RegisterSystem, ID as registerSystemId, RegisterType } from "./systems/RegisterSystem.sol";
 
 /**
@@ -29,6 +30,7 @@ contract World is IWorld {
   Set private entities = new Set();
   Uint256Component private _components;
   Uint256Component private _systems;
+  BoolComponent private _signers;
   RegisterSystem public register;
 
   event ComponentValueSet(uint256 indexed componentId, address indexed component, uint256 indexed entity, bytes data);
@@ -37,6 +39,7 @@ contract World is IWorld {
   constructor() {
     _components = new Uint256Component(address(0), componentsComponentId, "world.component.components");
     _systems = new Uint256Component(address(0), systemsComponentId, "world.component.systems");
+    _signers = new BoolComponent(address(0), signersComponentId, "world.component.signers");
 
     string[] memory registerSystemReadComponentIds = new string[](2);
     address[] memory registerSystemReadComponentAddrs = new address[](2);
