@@ -1,9 +1,11 @@
 import { Result } from "@ethersproject/abi";
+import { ExternalProvider } from "@ethersproject/providers";
 import { Components, ComponentValue, EntityID, SchemaOf } from "@latticexyz/recs";
 import { Cached } from "@latticexyz/utils";
 import { BaseContract, BigNumber, ContractInterface } from "ethers";
 import { Observable } from "rxjs";
-import { SyncState } from "./workers";
+
+export type WindowWithEthereum = typeof window & { ethereum?: ExternalProvider };
 
 export interface NetworkConfig {
   chainId: number;
@@ -13,11 +15,6 @@ export interface NetworkConfig {
   snapshotServiceUrl?: string;
   streamServiceUrl?: string;
   initialBlockNumber?: number;
-  blockExplorer?: string;
-  cacheAgeThreshold?: number;
-  cacheInterval?: number;
-  encoders?: boolean;
-  pruneOptions?: { playerAddress: string; hashedComponentId: string };
 }
 
 export interface ClockConfig {
@@ -38,7 +35,7 @@ export interface ProviderConfig {
   chainId: number;
   jsonRpcUrl: string;
   wsRpcUrl?: string;
-  options?: { batch?: boolean; pollingInterval?: number; skipNetworkCheck?: boolean };
+  options?: { batch?: boolean; pollingInterval?: number; skipNetworkCheck?: boolean; external?: boolean };
 }
 
 export type Contracts = {
@@ -126,10 +123,6 @@ export type SyncWorkerConfig = {
   snapshotServiceUrl?: string;
   streamServiceUrl?: string;
   fetchSystemCalls?: boolean;
-  cacheInterval?: number;
-  cacheAgeThreshold?: number;
-  snapshotNumChunks?: number;
-  pruneOptions?: { playerAddress: string; hashedComponentId: string };
 };
 
 export enum ContractSchemaValue {
@@ -260,10 +253,4 @@ export type ContractSchemaValueTypes = {
   [ContractSchemaValue.UINT256_ARRAY]: string[];
   [ContractSchemaValue.BYTES_ARRAY]: string[];
   [ContractSchemaValue.STRING_ARRAY]: string[];
-};
-
-export type SyncStateStruct = {
-  state: SyncState;
-  msg: string;
-  percentage: number;
 };

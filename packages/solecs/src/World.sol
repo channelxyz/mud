@@ -86,6 +86,7 @@ contract World is IWorld {
   function init() public {
     _components.registerWorld(address(this));
     _systems.registerWorld(address(this));
+    _signers.registerWorld(address(this));
     register.execute(abi.encode(msg.sender, RegisterType.System, address(register), registerSystemId));
   }
 
@@ -131,8 +132,10 @@ contract World is IWorld {
   /**
   Register a new signer in this world.
    */
-  function registerSigner(address signerAddr) public {
-    _signers.set(addressToEntity(signerAddr));
+  function registerSigner() public {
+    uint256 signerEntity = addressToEntity(msg.sender);
+    require(!_signers.has(signerEntity), "Signer is already registered.");
+    _signers.set(signerEntity);
   }
 
   /**
