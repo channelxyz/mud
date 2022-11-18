@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	wsUrl                  = flag.String("ws-url", "ws://localhost:8545", "Websocket Url")
+	wsUrl                  = flag.String("ws-url", "ws://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz", "Websocket Url")
 	port                   = flag.Int("port", 50071, "gRPC Server Port")
 	idleTimeoutTime        = flag.Int("idle-timeout-time", 30, "Time in seconds after which a client connection times out. Defaults to 30s")
 	idleDisconnectInterval = flag.Int("idle-disconnect-interval", 60, "Time in seconds for how often to disconnect idle clients. Defaults to 60s")

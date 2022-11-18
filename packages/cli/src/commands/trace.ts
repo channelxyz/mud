@@ -21,7 +21,10 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
     config: { type: "string", description: "path to mud deploy config (deploy.json)" },
     world: { type: "string", required: true, description: "world contract address" },
     tx: { type: "string", required: true, description: "tx hash to replay" },
-    rpc: { type: "string", description: "json rpc endpoint, defaults to http://localhost:8545" },
+    rpc: {
+      type: "string",
+      description: "json rpc endpoint, defaults to https://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz",
+    },
     debug: { type: "boolean", description: "open debugger" },
   });
 
@@ -31,7 +34,7 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
   const deployData = config && JSON.parse(readFileSync(config, { encoding: "utf8" }));
   const labels = [];
 
-  const provider = new JsonRpcProvider(rpc || "http://localhost:8545");
+  const provider = new JsonRpcProvider(rpc || "https://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz");
   const World = new Contract(world, WorldAbi, provider);
 
   if (deployData) {

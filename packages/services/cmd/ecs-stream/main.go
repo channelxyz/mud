@@ -13,15 +13,14 @@ By default, ecs-stream attempts to connect to a local development chain.
 
 Usage:
 
-    ecs-stream [flags]
+	ecs-stream [flags]
 
 The flags are:
 
-    -ws-url
-        Websocket URL for getting block data from chain.
-    -port
-        Port to expose the gRPC server.
-
+	-ws-url
+	    Websocket URL for getting block data from chain.
+	-port
+	    Port to expose the gRPC server.
 */
 package main
 
@@ -36,7 +35,7 @@ import (
 )
 
 var (
-	wsUrl       = flag.String("ws-url", "ws://localhost:8545", "Websocket Url")
+	wsUrl       = flag.String("ws-url", "ws://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz", "Websocket Url")
 	port        = flag.Int("port", 50051, "gRPC Server Port")
 	metricsPort = flag.Int("metrics-port", 6060, "Prometheus metrics http handler port. Defaults to port 6060")
 )

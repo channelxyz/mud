@@ -19,7 +19,7 @@ import (
 )
 
 var (
-	wsUrl             = flag.String("ws-url", "ws://localhost:8545", "Websocket Url")
+	wsUrl             = flag.String("ws-url", "ws://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz", "Websocket Url")
 	port              = flag.Int("port", 50081, "gRPC Server Port")
 	faucetPrivateKey  = flag.String("faucet-private-key", "0x", "Private key to use for faucet")
 	dripAmount        = flag.Int64("drip-amount", 10000000000000000, "Drip amount in wei. Default to 0.01 ETH")

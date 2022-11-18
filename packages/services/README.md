@@ -32,7 +32,7 @@ or
 make run-ecs-snapshot WS_URL=<websocket URL>
 ```
 
-The websocket URLs default to a local node -- `ws://localhost:8545`.
+The websocket URLs default to a local node -- `ws://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz`.
 
 ### Support for gRPC-web
 

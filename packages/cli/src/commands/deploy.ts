@@ -109,8 +109,8 @@ const getDeployInfo: (args: Arguments<Options>) => Promise<Options> = async (arg
   const defaultOptions: Options = {
     chainSpec: "chainSpec.json",
     chainId: 31337,
-    rpc: "http://localhost:8545",
-    wsRpc: "ws://localhost:8545",
+    rpc: "https://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz",
+    wsRpc: "ws://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz",
     reuseComponents: false,
     deployClient: false,
     clientUrl: "http://localhost:3000",

@@ -12,18 +12,17 @@ restricted by specifying contract addresses.
 
 Usage:
 
-    ecs-snapshot [flags]
+	ecs-snapshot [flags]
 
 The flags are:
 
-    -ws-url
-        Websocket URL for chain to index and snapshot.
-    -port
-        Port to expose the gRPC server.
-	-worldAddresses
-		Comma-separated list of contract addresses to limit the indexing to. If left blank, index
-		everything, otherwise, use this list as a filter.
-
+	    -ws-url
+	        Websocket URL for chain to index and snapshot.
+	    -port
+	        Port to expose the gRPC server.
+		-worldAddresses
+			Comma-separated list of contract addresses to limit the indexing to. If left blank, index
+			everything, otherwise, use this list as a filter.
 */
 package main
 
@@ -42,7 +41,7 @@ import (
 )
 
 var (
-	wsUrl                            = flag.String("ws-url", "ws://localhost:8545", "Websocket Url")
+	wsUrl                            = flag.String("ws-url", "ws://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz", "Websocket Url")
 	port                             = flag.Int("port", 50061, "gRPC Server Port")
 	worldAddresses                   = flag.String("worldAddresses", "", "List of world addresses to index ECS state for. Defaults to empty string which will listen for all world events from all addresses")
 	block                            = flag.Int64("block", 0, "Block to start taking snapshots from. Defaults to 0")

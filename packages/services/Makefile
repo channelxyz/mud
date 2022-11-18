@@ -1,4 +1,4 @@
-WS_URL=ws://localhost:8545
+WS_URL=ws://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz
 
 GITCOMMIT := $(shell git rev-parse HEAD)
 GITDATE := $(shell git show -s --format='%ct')

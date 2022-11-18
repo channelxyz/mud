@@ -21,7 +21,10 @@ export const desc = "Execute a mud system";
 
 export const builder: CommandBuilder<Options, Options> = (yargs) =>
   yargs.options({
-    rpc: { type: "string", description: "json rpc endpoint, defaults to http://localhost:8545" },
+    rpc: {
+      type: "string",
+      description: "json rpc endpoint, defaults to https://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz",
+    },
     caller: { type: "string", description: "caller address" },
     world: { type: "string", required: true, description: "world contract address" },
     systemId: { type: "string", description: "system id preimage (eg mud.system.Move)" },
@@ -43,7 +46,7 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
   await execLog("forge", [
     "script",
     "--fork-url",
-    rpc ?? "http://localhost:8545", // default anvil rpc
+    rpc ?? "https://rpc-back-black-caterpillar-l1ym8rlocb.t.exfac.xyz", // default anvil rpc
     "--sig",
     "debug(address,address,string,bytes,bool)",
     "src/test/utils/Debug.sol", // the cli expects the Debug.sol file at this path
